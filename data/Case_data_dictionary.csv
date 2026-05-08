@@ -1,0 +1,39 @@
+variable,label,description,type,notes
+hhnum,Household ID,Unique household identifier used to merge files.,integer,
+food_insecure_flag_adult,Food insecure (adult category),1 if adult food security category indicates low or very low food security; else 0.,binary,"Derived: adltfscat in {3,4} => 1"
+adltfscat,Adult food security category,Adult food security category (4-level). Lower numbers indicate higher food security.,categorical (1-4),"Typical interpretation: 1=High, 2=Marginal, 3=Low, 4=Very low"
+foodsufficient,Food sufficiency indicator,Household-reported food sufficiency measure.,categorical,1 often corresponds to food sufficient; other values indicate insufficiency
+poverty_ratio,Poverty ratio (cleaned),Household percent of poverty guideline divided by 100; clipped at 10 for extreme values.,numeric,Example: 1.0 means at the poverty guideline; 2.0 means 200% of poverty
+poverty_band,Income band from poverty ratio,Income band derived from poverty_ratio for easier reporting.,categorical,"Bands: <=1.0, 1.0-1.3, 1.3-2.0, 2.0-4.0, >4.0"
+snap_any,SNAP participation indicator,1 if household indicates SNAP participation across SNAP questions in the access file; else 0.,binary,Derived from snap1..snap8
+foodpantry,Food pantry use indicator,Indicator related to whether household used a food pantry (as coded in the household file).,categorical/binary,
+household_size,Household size,Number of individuals listed in the household roster.,integer,Aggregated from individual file
+num_adults,Number of adults,Count of household members age 18+.,integer,Aggregated from individual file
+num_children,Number of children,Count of household members age under 18.,integer,Aggregated from individual file
+num_elderly,Number of elderly,Count of household members age 65+.,integer,Aggregated from individual file
+employed_adults,Employed adults (count),Count of adults whose employment status equals code '1' in EMPLOYMENT.,integer,Derived from individual EMPLOYMENT
+any_employed_adult,Any employed adult,1 if at least one adult has employment code '1'; else 0.,binary,
+head_age,Household head age,Age of the roster member with RELATION_R code '0' (reference person).,numeric,From individual roster; may have missing values
+head_sex,Household head sex,Sex of reference person (RELATION_R='0').,categorical,See original codebook for values
+head_hispanic,Household head Hispanic indicator,Hispanic indicator for reference person (RELATION_R='0').,categorical,
+head_racecat,Household head race category,Race category for reference person (RELATION_R='0').,categorical,
+head_educcat,Household head education category,Education category for reference person (RELATION_R='0').,categorical (numeric),Higher values generally indicate more education; see codebook
+head_employment,Household head employment code,Employment code for reference person (RELATION_R='0').,categorical,Code 1 is treated as employed for derived fields
+region,Census region,Region of residence.,categorical,
+rural,Rural indicator,Rural indicator as coded in household file.,categorical/binary,
+nonmetro,Non-metro indicator,Non-metro indicator as coded in household file.,categorical/binary,
+anyvehicle,Any vehicle,Indicator whether household has any vehicle.,categorical/binary,
+vehiclenum,Number of vehicles,Number of vehicles available to the household.,numeric/integer,
+caraccess,Car access measure,Car access measure as coded in household file.,categorical,
+dist_sm,Distance to supermarket,Distance measure to nearest supermarket (units as defined in FoodAPS access file).,numeric,
+dist_cs,Distance to convenience store,Distance measure to nearest convenience store (units as defined in FoodAPS access file).,numeric,
+dist_walmart,Distance to Walmart,Distance measure to nearest Walmart (units as defined in FoodAPS access file).,numeric,
+nearsnap_dist,Distance to nearest SNAP-authorized store,Distance to nearest SNAP-authorized retailer (units as defined in FoodAPS access file).,numeric,
+nearff_dist,Distance to nearest fast-food outlet,Distance to nearest fast-food outlet (units as defined in FoodAPS access file).,numeric,
+nearnonff_dist,Distance to nearest non-fast-food restaurant,Distance to nearest non-fast-food restaurant (units as defined in FoodAPS access file).,numeric,
+fah_event_count,Food-at-home acquisition events,Count of food-at-home acquisition events recorded during diary period.,integer,Aggregated from FAH event file
+fah_storetype_unique,Unique FAH store types used,Number of unique store categories used for food-at-home acquisitions.,integer,Based on placecateg_ers in FAH event file
+fafh_event_count,Food-away-from-home events,Count of food-away-from-home acquisition events recorded during diary period.,integer,Aggregated from FAFH event file
+fafh_schoolmeal_events,School meal events (count),Count of events flagged as school meals.,integer,Sum of schoolmeal_flag in FAFH event file
+targetgroup,Sampling target group,FoodAPS sampling target group indicator.,categorical,
+hhwgt,Household survey weight,Household survey weight for nationally representative estimates.,numeric,Optional for competition; not required for most analyses
